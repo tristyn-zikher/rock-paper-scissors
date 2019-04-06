@@ -3,20 +3,22 @@ import ActionCard from './Components/ActionCard';
 import Footer from './Components/Footer';
 import GameSelector from './Components/GameSelector';
 import ComputerRandomizer from './Components/ComputerRandomizer';
+import ComputerSelection from './Components/ComputerSelection';
 import './App.css';
 
 class App extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      step: 1,
+      step: 0,
       computerSelection: null,
       playerSelection: null,
     }
+    this.resetGame = this.resetGame.bind(this);
     this.startGame = this.startGame.bind(this);
     this.setPlayerSelection = this.setPlayerSelection.bind(this);
-    this.generateComputerSelection = this.generateComputerSelection.bind(this);
     this.submitPlayerSelection = this.submitPlayerSelection.bind(this);
+    this.generateComputerSelection = this.generateComputerSelection.bind(this);
   }
 
  generateComputerSelection() {
@@ -41,9 +43,21 @@ class App extends Component {
     });
   }
 
+  resetGame() {
+    console.log('running')
+    this.setState({step: 1, computerSelection: null, playerSelection: null})
+  }
+
   submitPlayerSelection() {
+    if (this.state.playerSelection === null) {
+      return;
+    }
     this.generateComputerSelection();
     this.setState({step: 2});
+    setTimeout(
+      () => { this.setState({ step: 3 }) }
+      ,2000
+    )
   }
 
   render() {
@@ -72,6 +86,14 @@ class App extends Component {
                 {
                   this.state.step === 2 &&
                   <ComputerRandomizer />
+                }
+                {
+                  this.state.step === 3 &&
+                  <ComputerSelection
+                    computerSelection={this.state.computerSelection}
+                    playerSelection={this.state.playerSelection}
+                    onClick={this.resetGame}
+                  />
                 }
                 </div>
               </div>

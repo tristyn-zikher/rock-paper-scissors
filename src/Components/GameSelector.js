@@ -25,23 +25,23 @@ const GameSelector = ({ onClick, playerSelection, onSubmit }) => {
         label="Submit"
         onClick={onSubmit}
       >
-      <div className="container">
-        <div className="row mb-3">
-          {
-            [Rock, Paper, Scissors].map((ele, index) => {
-              let border = '';
-              if (index === playerSelection) {
-                border = 'dashed red 4px';
-              }
-              return (
-                <div key={index} onClick={ ()=>{ onClick(index) } } className="col">
-                  <img alt="item selector" style={{width: 100, height: 100, border}} src={ele} />
-                </div>
-              )
-            })
-          }
+        <div className="container">
+          <div className="row mb-3">
+            {
+              [Rock, Paper, Scissors].map((ele, index) => {
+                let border = '';
+                if (index === playerSelection) {
+                  border = 'dashed red 4px';
+                }
+                return (
+                  <div key={index} onClick={ ()=>{ onClick(index) } } className="col">
+                    <img alt="item selector" style={{width: 100, height: 100, border}} src={ele} />
+                  </div>
+                )
+              })
+            }
+          </div>
         </div>
-      </div>
       </ActionCard>
   </div>
   )

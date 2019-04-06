@@ -44,7 +44,6 @@ class ComputerRandomizer extends Component {
       <div>
         <ActionCard
           title="Computer Selection..."
-          label="Submit"
         >
         <div className="container">
           <div className="row mb-3">

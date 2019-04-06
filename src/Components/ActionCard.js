@@ -15,22 +15,16 @@ const Card = ({title, label, subtitle, onClick, children}) => {
           children &&
           children
         }
-        <button onClick={onClick} className="btn btn-primary">{label}</button>
+        {
+          label &&
+          <button onClick={onClick} className="btn btn-primary">{label}</button>
+        }
       </div>
     </div>
   )
 }
 
-Card.propTypes = {
-  title: PropTypes.string.isRequired,
-  label: PropTypes.string.isRequired,
-  onClick: PropTypes.func.isRequired,
-}
-
 Card.defaultProps = {
-  title: '',
-  label: '',
-  subtitle: '',
   onClick: () => console.error('No onClick provided to ActionCard.js'),
 }
 
