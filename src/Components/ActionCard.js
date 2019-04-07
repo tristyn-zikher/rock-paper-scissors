@@ -1,15 +1,14 @@
 import React from 'react';
-import PropTypes from 'prop-types'
 
-// Requires title,
-// requires onClick function
-// requires 'label' which is the label for the 'onClick' button.
-
-const Card = ({title, label, subtitle, onClick, children}) => {
+const Card = ({title, label, subtitle, onClick, children, error}) => {
   return (
     <div className="card">
       <h5 className="card-header">{title}</h5>
       <div className="card-body">
+        {
+          error &&
+          <div className="alert alert-danger">{error}</div>
+        }
         <h5 className="card-title">{subtitle}</h5>
         {
           children &&

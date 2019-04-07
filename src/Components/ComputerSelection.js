@@ -8,7 +8,7 @@ class ComputerSelection extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      alertMessage: 'poo'
+      alertMessage: ''
     }
 
   }
@@ -71,7 +71,7 @@ class ComputerSelection extends Component {
           </div>
         </div>
         </ActionCard>
-        <h1>{this.state.alertMessage}</h1>
+        <div className="alert alert-warning">{this.state.alertMessage}</div>
     </div>
     )
   }

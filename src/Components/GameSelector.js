@@ -1,28 +1,30 @@
-import React, { Component } from 'react';
+import React from 'react';
 import Paper from '../Images/paper.png'
 import Rock from '../Images/rock.png'
 import Scissors from '../Images/scissors.png'
 import ActionCard from './ActionCard';
 
+const Options = {
+  0: 'Rock',
+  1: 'Paper',
+  2: 'Scissors',
+}
+
 const GenerateTitle = (playerSelection) => {
-  let options = {
-    0: 'Rock',
-    1: 'Paper',
-    2: 'Scissors',
-  }
   if (playerSelection !== null) {
-    return `You Have Chosen ${options[playerSelection]}`;
+    return `You Have Chosen ${Options[playerSelection]}`;
   } else {
     return 'Choose Either: Rock, Paper or Scissors'
   }
 }
 
-const GameSelector = ({ onClick, playerSelection, onSubmit }) => {
+const GameSelector = ({ onClick, playerSelection, onSubmit, computerSelection, error }) => {
   return (
     <div className="mb-5">
       <ActionCard
         title={GenerateTitle(playerSelection)}
-        label="Submit"
+        error={error}
+        label={computerSelection === null ? "Submit" : null}
         onClick={onSubmit}
       >
         <div className="container">

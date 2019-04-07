@@ -29,6 +29,10 @@ class ComputerRandomizer extends Component {
     )
   }
 
+  componentWillUnmount() {
+    clearInterval(this.test)
+  }
+
   randomizeSelections() {
     let selected = this.state.selected;
     if (selected === 2) {

@@ -13,6 +13,7 @@ class App extends Component {
       step: 0,
       computerSelection: null,
       playerSelection: null,
+      error: null,
     }
     this.resetGame = this.resetGame.bind(this);
     this.startGame = this.startGame.bind(this);
@@ -39,7 +40,7 @@ class App extends Component {
       return;
     }
     this.setState((state) => {
-      return { playerSelection: index }
+      return { playerSelection: index, error: null }
     });
   }
 
@@ -50,6 +51,7 @@ class App extends Component {
 
   submitPlayerSelection() {
     if (this.state.playerSelection === null) {
+      this.setState({error: "You must make a selection."});
       return;
     }
     this.generateComputerSelection();
@@ -80,6 +82,8 @@ class App extends Component {
                   <GameSelector
                     onSubmit={this.submitPlayerSelection}
                     playerSelection={this.state.playerSelection}
+                    error={this.state.error}
+                    computerSelection={this.state.computerSelection}
                     onClick={this.setPlayerSelection}
                   />
                 }
