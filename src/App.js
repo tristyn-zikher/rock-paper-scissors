@@ -4,6 +4,7 @@ import Footer from './Components/Footer';
 import GameSelector from './Components/GameSelector';
 import ComputerRandomizer from './Components/ComputerRandomizer';
 import ComputerSelection from './Components/ComputerSelection';
+import GameContainer from './Containers/GameContainer';
 import './App.css';
 
 class App extends Component {
@@ -23,8 +24,7 @@ class App extends Component {
   }
 
  generateComputerSelection() {
-   let computerSelection = Math.floor(Math.random() *3);
-   console.log(computerSelection)
+   let computerSelection = Math.floor(Math.random() * 3);
    this.setState({ computerSelection })
    this.setState((state) => {
      return { computerSelection }
@@ -45,7 +45,6 @@ class App extends Component {
   }
 
   resetGame() {
-    console.log('running')
     this.setState({step: 1, computerSelection: null, playerSelection: null})
   }
 
@@ -65,45 +64,36 @@ class App extends Component {
   render() {
     return (
       <div>
-        <div className="d-flex flex-column">
-          <div id="page-content">
-            <div className="container text-center">
-              <div className="row justify-content-center">
-                <div className="col-md-7">
-                  <h1 className="font-weight-light mt-4 text-white">Rock, Paper, Scissors</h1>
-                  {
-                    this.state.step === 0 ?
-                    <ActionCard
-                      label="Get Started"
-                      subtitle="Click Below to Get Started"
-                      onClick={this.startGame}
-                    />
-                  :
-                  <GameSelector
-                    onSubmit={this.submitPlayerSelection}
-                    playerSelection={this.state.playerSelection}
-                    error={this.state.error}
-                    computerSelection={this.state.computerSelection}
-                    onClick={this.setPlayerSelection}
-                  />
-                }
-                {
-                  this.state.step === 2 &&
-                  <ComputerRandomizer />
-                }
-                {
-                  this.state.step === 3 &&
-                  <ComputerSelection
-                    computerSelection={this.state.computerSelection}
-                    playerSelection={this.state.playerSelection}
-                    onClick={this.resetGame}
-                  />
-                }
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
+          <GameContainer title="Rock, Paper, Scissors">
+            {
+              this.state.step === 0 ?
+              <ActionCard
+                label="Get Started"
+                subtitle="Click Below to Get Started"
+                onClick={this.startGame}
+              />
+            :
+            <GameSelector
+              onSubmit={this.submitPlayerSelection}
+              playerSelection={this.state.playerSelection}
+              error={this.state.error}
+              computerSelection={this.state.computerSelection}
+              onClick={this.setPlayerSelection}
+            />
+          }
+          {
+            this.state.step === 2 &&
+            <ComputerRandomizer />
+          }
+          {
+            this.state.step === 3 &&
+            <ComputerSelection
+              computerSelection={this.state.computerSelection}
+              playerSelection={this.state.playerSelection}
+              onClick={this.resetGame}
+            />
+          }
+          </GameContainer>
         <Footer />
       </div>
     );

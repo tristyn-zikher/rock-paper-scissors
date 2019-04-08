@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 
 const Card = ({title, label, subtitle, onClick, children, error}) => {
   return (
@@ -21,6 +22,14 @@ const Card = ({title, label, subtitle, onClick, children, error}) => {
       </div>
     </div>
   )
+}
+
+Card.propTypes = {
+  onClick: PropTypes.func,
+  title: PropTypes.string,
+  label: PropTypes.string,
+  subtitle: PropTypes.string,
+  error: PropTypes.string,
 }
 
 Card.defaultProps = {

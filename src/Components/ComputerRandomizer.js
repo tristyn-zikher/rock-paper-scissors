@@ -11,29 +11,10 @@ class ComputerRandomizer extends Component {
       selected: 0
     }
     this.randomizeSelections = this.randomizeSelections.bind(this);
-    this.test = this.test.bind(this);
   }
 
   componentDidMount() {
-    this.test()
-    setTimeout(
-      ()=>{ clearInterval(this.test) }
-      , 800
-    )
-  }
-
-  test() {
-    setInterval(
-      this.randomizeSelections,
-      200
-    )
-  }
-
-  componentWillUnmount() {
-    clearInterval(this.test)
-  }
-
-  randomizeSelections() {
+  this.interval = setInterval(() => {
     let selected = this.state.selected;
     if (selected === 2) {
       selected = 0;
@@ -41,6 +22,15 @@ class ComputerRandomizer extends Component {
      selected++;
     }
     this.setState({ selected });
+  }, 200);
+}
+
+  componentWillUnmount() {
+    clearInterval(this.interval)
+  }
+
+  randomizeSelections() {
+
   }
 
   render() {
@@ -49,25 +39,25 @@ class ComputerRandomizer extends Component {
         <ActionCard
           title="Computer Selection..."
         >
-        <div className="container">
-          <div className="row mb-3">
-            {
-              [Rock, Paper, Scissors].map((ele, index) => {
-                let border = '';
-                if (index === this.state.selected) {
-                  border = 'dashed red 4px';
-                }
-                return (
-                  <div key={index} className="col">
-                    <img alt="item selector" style={{width: 100, height: 100, border}} src={ele} />
-                  </div>
-                )
-              })
-            }
+          <div className="container">
+            <div className="row mb-3">
+              {
+                [Rock, Paper, Scissors].map((ele, index) => {
+                  let border = '';
+                  if (index === this.state.selected) {
+                    border = 'dashed red 4px';
+                  }
+                  return (
+                    <div key={index} className="col">
+                      <img alt="item selector" style={{width: 100, height: 100, border}} src={ele} />
+                    </div>
+                  )
+                })
+              }
+            </div>
           </div>
-        </div>
         </ActionCard>
-    </div>
+      </div>
     )
   }
 }

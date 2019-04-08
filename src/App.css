@@ -33,7 +33,7 @@ body {
 }
 
 #sticky-footer {
-  position: absolute;
+  position: fixed;
   width: 100%;
   bottom: 0;
   flex-shrink: none;

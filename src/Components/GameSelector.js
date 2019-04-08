@@ -3,6 +3,7 @@ import Paper from '../Images/paper.png'
 import Rock from '../Images/rock.png'
 import Scissors from '../Images/scissors.png'
 import ActionCard from './ActionCard';
+import PropTypes from 'prop-types';
 
 const Options = {
   0: 'Rock',
@@ -47,6 +48,14 @@ const GameSelector = ({ onClick, playerSelection, onSubmit, computerSelection, e
       </ActionCard>
   </div>
   )
+}
+
+GameSelector.propTypes = {
+  onClick: PropTypes.func.isRequired,
+  onSubmit: PropTypes.func.isRequired,
+  playerSelection: PropTypes.number,
+  computerSelection: PropTypes.number,
+  error: PropTypes.string,
 }
 
 export default GameSelector;

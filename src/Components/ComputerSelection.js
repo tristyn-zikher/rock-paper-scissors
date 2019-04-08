@@ -10,8 +10,8 @@ class ComputerSelection extends Component {
     this.state = {
       alertMessage: ''
     }
-
   }
+
   componentDidMount() {
     // 0 = rock, 1 = paper, 2 = scissors
     let computerSelection = this.props.computerSelection;
@@ -24,30 +24,36 @@ class ComputerSelection extends Component {
 
     // handle wins
     if (computerSelection === 0 && playerSelection === 1) {
-      this.setState({alertMessage: 'Paper covers rock. You win!'})
+      this.setState({alertMessage: 'Paper covers rock. You win!', doesPlayerWin: true})
     }
     if (computerSelection === 1 && playerSelection === 2) {
-      this.setState({alertMessage: 'Scissors cuts paper. You win!'})
+      this.setState({alertMessage: 'Scissors cuts paper. You win!', doesPlayerWin: true})
     }
     if (computerSelection === 2 && playerSelection === 0) {
-      this.setState({alertMessage: 'Rock breaks scissors. You win!'})
+      this.setState({alertMessage: 'Rock breaks scissors. You win!', doesPlayerWin: true})
     }
 
     // handle losses
     if (computerSelection === 1 && playerSelection === 0) {
-      this.setState({alertMessage: 'Paper covers rock. You lose!'})
+      this.setState({alertMessage: 'Paper covers rock. You lose!', doesPlayerWin: false})
     }
     if (computerSelection === 2 && playerSelection === 1) {
-      this.setState({alertMessage: 'Scissors cuts paper. You lose!'})
+      this.setState({alertMessage: 'Scissors cuts paper. You lose!', doesPlayerWin: false})
     }
     if (computerSelection === 0 && playerSelection === 2) {
-      this.setState({alertMessage: 'Rock breaks scissors. You lose!'})
+      this.setState({alertMessage: 'Rock breaks scissors. You lose!', doesPlayerWin: false})
     }
   }
 
   render() {
     return (
       <div>
+        {
+          this.state.doesPlayerWin ?
+          <div className="alert alert-success">{this.state.alertMessage}</div>
+          :
+          <div className="alert alert-danger">{this.state.alertMessage}</div>
+        }
         <ActionCard
           title="Computer has selected Scissors"
           onClick={this.props.onClick}
@@ -71,7 +77,6 @@ class ComputerSelection extends Component {
           </div>
         </div>
         </ActionCard>
-        <div className="alert alert-warning">{this.state.alertMessage}</div>
     </div>
     )
   }
