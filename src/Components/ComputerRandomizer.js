@@ -29,10 +29,6 @@ class ComputerRandomizer extends Component {
     clearInterval(this.interval)
   }
 
-  randomizeSelections() {
-
-  }
-
   render() {
     return (
       <div>
